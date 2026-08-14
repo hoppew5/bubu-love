@@ -925,3 +925,19 @@ main,
     max-width: 100%;
   }
 }
+.photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  object-position: center;
+}
+
+.photo {
+  overflow: hidden;
+}
+
+.photo img.photo-active {
+  transform: scale(1.03);
+  transition: transform 0.3s ease;
+}
