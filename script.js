@@ -1,293 +1,191 @@
-/* -------------------------
-   WELCOME SCREEN
-------------------------- */
+/* =========================
+   MUSIC
+========================= */
 
-const welcomeScreen = document.getElementById("welcomeScreen");
-const mainContent = document.getElementById("mainContent");
-const startBtn = document.getElementById("startBtn");
+const music = document.getElementById("music");
+const musicBtn = document.getElementById("musicBtn");
 
-startBtn.addEventListener("click", () => {
+if (musicBtn && music) {
+  musicBtn.addEventListener("click", async () => {
+    try {
+      if (music.paused) {
+        await music.play();
+        musicBtn.innerHTML = "🔊 Music Playing ❤️";
+      } else {
+        music.pause();
+        musicBtn.innerHTML = "🎵 Play our song 💗";
+      }
+    } catch (error) {
+      alert("Song play nahi ho raha. Check karo song.mp3 upload hai ya nahi ❤️");
+    }
+  });
+}
 
-  welcomeScreen.style.opacity = "0";
 
-  setTimeout(() => {
-
-    welcomeScreen.style.display = "none";
-    mainContent.classList.remove("hidden");
-
-    createHearts();
-
-  }, 600);
-
-});
-
-
-/* -------------------------
+/* =========================
    FLOATING HEARTS
-------------------------- */
+========================= */
 
 function createHeart() {
-
   const heart = document.createElement("div");
 
   heart.className = "heart";
 
-  const hearts = ["❤️", "💕", "💗", "💖", "💓", "💘"];
+  const heartList = [
+    "❤️",
+    "💕",
+    "💗",
+    "💖",
+    "💓",
+    "💘"
+  ];
 
-  heart.innerHTML =
-    hearts[Math.floor(Math.random() * hearts.length)];
+  heart.textContent =
+    heartList[Math.floor(Math.random() * heartList.length)];
 
-  heart.style.left =
-    Math.random() * 100 + "vw";
+  heart.style.left = Math.random() * 100 + "vw";
 
   heart.style.fontSize =
-    (12 + Math.random() * 22) + "px";
+    14 + Math.random() * 20 + "px";
 
   heart.style.animationDuration =
-    (5 + Math.random() * 5) + "s";
+    5 + Math.random() * 5 + "s";
 
   document.body.appendChild(heart);
 
   setTimeout(() => {
     heart.remove();
   }, 10000);
+}
+
+
+/* Create hearts continuously */
+
+setInterval(() => {
+  createHeart();
+}, 1200);
+
+
+/* =========================
+   YES BUTTONS
+========================= */
+
+const yesButtons =
+  document.querySelectorAll(".yes");
+
+const modal =
+  document.getElementById("modal");
+
+const closeModal =
+  document.getElementById("closeModal");
+
+
+yesButtons.forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    // Show love popup
+    if (modal) {
+      modal.classList.add("show");
+    }
+
+    // Heart celebration
+    for (let i = 0; i < 25; i++) {
+
+      setTimeout(() => {
+        createHeart();
+      }, i * 100);
+
+    }
+
+  });
+
+});
+
+
+/* =========================
+   CLOSE LOVE POPUP
+========================= */
+
+if (closeModal) {
+
+  closeModal.addEventListener("click", () => {
+
+    modal.classList.remove("show");
+
+  });
 
 }
 
 
-function createHearts() {
+/* =========================
+   CLICK OUTSIDE MODAL
+========================= */
 
-  setInterval(() => {
+window.addEventListener("click", (event) => {
 
-    createHeart();
+  if (event.target === modal) {
 
-  }, 700);
+    modal.classList.remove("show");
 
-}
+  }
+
+});
 
 
-/* -------------------------
-   REASON CARD EFFECT
-------------------------- */
+/* =========================
+   PHOTO CLICK EFFECT
+========================= */
+
+const photos =
+  document.querySelectorAll(".photo img");
+
+photos.forEach(photo => {
+
+  photo.addEventListener("click", () => {
+
+    photo.classList.toggle("photo-active");
+
+  });
+
+});
+
+
+/* =========================
+   REASON CARDS
+========================= */
 
 const reasonCards =
-  document.querySelectorAll(".reason-card");
+  document.querySelectorAll(".reason-grid article");
 
 reasonCards.forEach(card => {
 
   card.addEventListener("click", () => {
 
-    card.style.transform = "scale(1.05)";
+    card.style.transform = "scale(1.08)";
 
     setTimeout(() => {
 
       card.style.transform = "";
 
-    }, 250);
+    }, 300);
 
   });
 
 });
 
 
-/* -------------------------
-   OPEN WHEN LETTERS
-------------------------- */
+/* =========================
+   PAGE LOAD HEARTS
+========================= */
 
-const letterModal =
-  document.getElementById("letterModal");
+window.addEventListener("load", () => {
 
-const letterText =
-  document.getElementById("letterText");
-
-const letterCards =
-  document.querySelectorAll(".letter-card");
-
-const closeLetter =
-  document.getElementById("closeLetter");
-
-const closeLetterBtn =
-  document.getElementById("closeLetterBtn");
-
-
-letterCards.forEach(card => {
-
-  card.addEventListener("click", () => {
-
-    const message =
-      card.getAttribute("data-message");
-
-    letterText.textContent = message;
-
-    letterModal.classList.add("show");
-
-  });
-
-});
-
-
-function closeLetterModal() {
-
-  letterModal.classList.remove("show");
-
-}
-
-
-closeLetter.addEventListener(
-  "click",
-  closeLetterModal
-);
-
-closeLetterBtn.addEventListener(
-  "click",
-  closeLetterModal
-);
-
-
-/* -------------------------
-   SURPRISE
-------------------------- */
-
-const surpriseBtn =
-  document.getElementById("surpriseBtn");
-
-const surpriseMessage =
-  document.getElementById("surpriseMessage");
-
-
-surpriseBtn.addEventListener("click", () => {
-
-  surpriseMessage.classList.remove("hidden");
-
-  surpriseBtn.textContent =
-    "You found it! 🥹❤️";
-
-  for (let i = 0; i < 15; i++) {
+  for (let i = 0; i < 8; i++) {
 
     setTimeout(() => {
-
       createHeart();
-
-    }, i * 100);
-
-  }
-
-});
-
-
-/* -------------------------
-   YES BUTTONS
-------------------------- */
-
-const loveModal =
-  document.getElementById("loveModal");
-
-const yesBtn =
-  document.getElementById("yesBtn");
-
-const yesBtn2 =
-  document.getElementById("yesBtn2");
-
-const closeLoveModal =
-  document.getElementById("closeLoveModal");
-
-
-function showLoveModal() {
-
-  loveModal.classList.add("show");
-
-  for (let i = 0; i < 25; i++) {
-
-    setTimeout(() => {
-
-      createHeart();
-
-    }, i * 80);
-
-  }
-
-}
-
-
-yesBtn.addEventListener(
-  "click",
-  showLoveModal
-);
-
-yesBtn2.addEventListener(
-  "click",
-  showLoveModal
-);
-
-
-closeLoveModal.addEventListener("click", () => {
-
-  loveModal.classList.remove("show");
-
-});
-
-
-/* -------------------------
-   CLOSE MODAL OUTSIDE
-------------------------- */
-
-window.addEventListener("click", (event) => {
-
-  if (event.target === letterModal) {
-
-    letterModal.classList.remove("show");
-
-  }
-
-  if (event.target === loveModal) {
-
-    loveModal.classList.remove("show");
-
-  }
-
-});
-
-
-/* -------------------------
-   MUSIC
-------------------------- */
-
-const music =
-  document.getElementById("music");
-
-const musicBtn =
-  document.getElementById("musicBtn");
-
-let musicPlaying = false;
-
-
-musicBtn.addEventListener("click", async () => {
-
-  try {
-
-    if (!musicPlaying) {
-
-      await music.play();
-
-      musicPlaying = true;
-
-      musicBtn.textContent = "🔊";
-
-    } else {
-
-      music.pause();
-
-      musicPlaying = false;
-
-      musicBtn.textContent = "🎵";
-
-    }
-
-  } catch (error) {
-
-    alert(
-      "Bubu, pehle song.mp3 file website me upload karo ❤️"
-    );
+    }, i * 300);
 
   }
 
