@@ -1,191 +1,353 @@
-/* =========================
-   MUSIC
-========================= */
+document.addEventListener("DOMContentLoaded", () => {
 
-const music = document.getElementById("music");
-const musicBtn = document.getElementById("musicBtn");
+  /* =========================
+     START OUR STORY
+  ========================= */
 
-if (musicBtn && music) {
-  musicBtn.addEventListener("click", async () => {
-    try {
-      if (music.paused) {
-        await music.play();
-        musicBtn.innerHTML = "🔊 Music Playing ❤️";
-      } else {
-        music.pause();
-        musicBtn.innerHTML = "🎵 Play our song 💗";
-      }
-    } catch (error) {
-      alert("Song play nahi ho raha. Check karo song.mp3 upload hai ya nahi ❤️");
-    }
+  const welcomeScreen = document.getElementById("welcomeScreen");
+  const mainContent = document.getElementById("mainContent");
+  const startBtn = document.getElementById("startBtn");
+
+  if (startBtn && welcomeScreen && mainContent) {
+
+    startBtn.addEventListener("click", () => {
+
+      welcomeScreen.style.opacity = "0";
+      welcomeScreen.style.pointerEvents = "none";
+
+      setTimeout(() => {
+
+        welcomeScreen.style.display = "none";
+
+        mainContent.classList.remove("hidden");
+
+        // Make sure content is visible
+        mainContent.style.display = "block";
+        mainContent.style.opacity = "1";
+
+        createHearts();
+
+        // Smoothly go to the story
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+
+      }, 600);
+
+    });
+
+  }
+
+
+  /* =========================
+     FLOATING HEARTS
+  ========================= */
+
+  function createHeart() {
+
+    const heart = document.createElement("div");
+
+    heart.className = "heart";
+
+    const hearts = [
+      "❤️",
+      "💕",
+      "💗",
+      "💖",
+      "💓",
+      "💘"
+    ];
+
+    heart.textContent =
+      hearts[Math.floor(Math.random() * hearts.length)];
+
+    heart.style.left =
+      Math.random() * 100 + "vw";
+
+    heart.style.fontSize =
+      (12 + Math.random() * 22) + "px";
+
+    heart.style.animationDuration =
+      (5 + Math.random() * 5) + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 10000);
+
+  }
+
+
+  let heartsStarted = false;
+
+  function createHearts() {
+
+    if (heartsStarted) return;
+
+    heartsStarted = true;
+
+    setInterval(() => {
+      createHeart();
+    }, 700);
+
+  }
+
+
+  /* =========================
+     REASON CARDS
+  ========================= */
+
+  const reasonCards =
+    document.querySelectorAll(".reason-card");
+
+  reasonCards.forEach(card => {
+
+    card.addEventListener("click", () => {
+
+      card.style.transform = "scale(1.05)";
+
+      setTimeout(() => {
+        card.style.transform = "";
+      }, 250);
+
+    });
+
   });
-}
 
 
-/* =========================
-   FLOATING HEARTS
-========================= */
+  /* =========================
+     LETTER MODAL
+  ========================= */
 
-function createHeart() {
-  const heart = document.createElement("div");
+  const letterModal =
+    document.getElementById("letterModal");
 
-  heart.className = "heart";
+  const letterText =
+    document.getElementById("letterText");
 
-  const heartList = [
-    "❤️",
-    "💕",
-    "💗",
-    "💖",
-    "💓",
-    "💘"
-  ];
+  const letterCards =
+    document.querySelectorAll(".letter-card");
 
-  heart.textContent =
-    heartList[Math.floor(Math.random() * heartList.length)];
+  const closeLetter =
+    document.getElementById("closeLetter");
 
-  heart.style.left = Math.random() * 100 + "vw";
-
-  heart.style.fontSize =
-    14 + Math.random() * 20 + "px";
-
-  heart.style.animationDuration =
-    5 + Math.random() * 5 + "s";
-
-  document.body.appendChild(heart);
-
-  setTimeout(() => {
-    heart.remove();
-  }, 10000);
-}
+  const closeLetterBtn =
+    document.getElementById("closeLetterBtn");
 
 
-/* Create hearts continuously */
+  letterCards.forEach(card => {
 
-setInterval(() => {
-  createHeart();
-}, 1200);
+    card.addEventListener("click", () => {
+
+      const message =
+        card.getAttribute("data-message");
+
+      if (letterText) {
+        letterText.textContent = message;
+      }
+
+      if (letterModal) {
+        letterModal.classList.add("show");
+      }
+
+    });
+
+  });
 
 
-/* =========================
-   YES BUTTONS
-========================= */
+  function closeLetterModal() {
 
-const yesButtons =
-  document.querySelectorAll(".yes");
-
-const modal =
-  document.getElementById("modal");
-
-const closeModal =
-  document.getElementById("closeModal");
-
-
-yesButtons.forEach(button => {
-
-  button.addEventListener("click", () => {
-
-    // Show love popup
-    if (modal) {
-      modal.classList.add("show");
+    if (letterModal) {
+      letterModal.classList.remove("show");
     }
 
-    // Heart celebration
+  }
+
+
+  if (closeLetter) {
+    closeLetter.addEventListener(
+      "click",
+      closeLetterModal
+    );
+  }
+
+  if (closeLetterBtn) {
+    closeLetterBtn.addEventListener(
+      "click",
+      closeLetterModal
+    );
+  }
+
+
+  /* =========================
+     SURPRISE
+  ========================= */
+
+  const surpriseBtn =
+    document.getElementById("surpriseBtn");
+
+  const surpriseMessage =
+    document.getElementById("surpriseMessage");
+
+
+  if (surpriseBtn) {
+
+    surpriseBtn.addEventListener("click", () => {
+
+      if (surpriseMessage) {
+        surpriseMessage.classList.remove("hidden");
+      }
+
+      surpriseBtn.textContent =
+        "You found it! 🥹❤️";
+
+      for (let i = 0; i < 15; i++) {
+
+        setTimeout(() => {
+          createHeart();
+        }, i * 100);
+
+      }
+
+    });
+
+  }
+
+
+  /* =========================
+     YES BUTTONS
+  ========================= */
+
+  const loveModal =
+    document.getElementById("loveModal");
+
+  const yesBtn =
+    document.getElementById("yesBtn");
+
+  const yesBtn2 =
+    document.getElementById("yesBtn2");
+
+  const closeLoveModal =
+    document.getElementById("closeLoveModal");
+
+
+  function showLoveModal() {
+
+    if (loveModal) {
+      loveModal.classList.add("show");
+    }
+
     for (let i = 0; i < 25; i++) {
 
       setTimeout(() => {
         createHeart();
-      }, i * 100);
+      }, i * 80);
 
+    }
+
+  }
+
+
+  if (yesBtn) {
+    yesBtn.addEventListener(
+      "click",
+      showLoveModal
+    );
+  }
+
+
+  if (yesBtn2) {
+    yesBtn2.addEventListener(
+      "click",
+      showLoveModal
+    );
+  }
+
+
+  if (closeLoveModal) {
+
+    closeLoveModal.addEventListener("click", () => {
+
+      if (loveModal) {
+        loveModal.classList.remove("show");
+      }
+
+    });
+
+  }
+
+
+  /* =========================
+     CLOSE MODALS
+  ========================= */
+
+  window.addEventListener("click", (event) => {
+
+    if (
+      letterModal &&
+      event.target === letterModal
+    ) {
+      letterModal.classList.remove("show");
+    }
+
+    if (
+      loveModal &&
+      event.target === loveModal
+    ) {
+      loveModal.classList.remove("show");
     }
 
   });
 
-});
+
+  /* =========================
+     MUSIC
+  ========================= */
+
+  const music =
+    document.getElementById("music");
+
+  const musicBtn =
+    document.getElementById("musicBtn");
+
+  let musicPlaying = false;
 
 
-/* =========================
-   CLOSE LOVE POPUP
-========================= */
+  if (musicBtn && music) {
 
-if (closeModal) {
+    musicBtn.addEventListener("click", async () => {
 
-  closeModal.addEventListener("click", () => {
+      try {
 
-    modal.classList.remove("show");
+        if (!musicPlaying) {
 
-  });
+          await music.play();
 
-}
+          musicPlaying = true;
 
+          musicBtn.textContent = "🔊";
 
-/* =========================
-   CLICK OUTSIDE MODAL
-========================= */
+        } else {
 
-window.addEventListener("click", (event) => {
+          music.pause();
 
-  if (event.target === modal) {
+          musicPlaying = false;
 
-    modal.classList.remove("show");
+          musicBtn.textContent = "🎵";
 
-  }
+        }
 
-});
+      } catch (error) {
 
+        alert(
+          "Song play nahi ho raha. GitHub me Song.mp3 ka filename check karo ❤️"
+        );
 
-/* =========================
-   PHOTO CLICK EFFECT
-========================= */
+      }
 
-const photos =
-  document.querySelectorAll(".photo img");
-
-photos.forEach(photo => {
-
-  photo.addEventListener("click", () => {
-
-    photo.classList.toggle("photo-active");
-
-  });
-
-});
-
-
-/* =========================
-   REASON CARDS
-========================= */
-
-const reasonCards =
-  document.querySelectorAll(".reason-grid article");
-
-reasonCards.forEach(card => {
-
-  card.addEventListener("click", () => {
-
-    card.style.transform = "scale(1.08)";
-
-    setTimeout(() => {
-
-      card.style.transform = "";
-
-    }, 300);
-
-  });
-
-});
-
-
-/* =========================
-   PAGE LOAD HEARTS
-========================= */
-
-window.addEventListener("load", () => {
-
-  for (let i = 0; i < 8; i++) {
-
-    setTimeout(() => {
-      createHeart();
-    }, i * 300);
+    });
 
   }
 
