@@ -1,78 +1,294 @@
-const modal = document.getElementById("modal");
-const closeModal = document.getElementById("closeModal");
+/* -------------------------
+   WELCOME SCREEN
+------------------------- */
 
-document.querySelectorAll(".yes").forEach(btn => {
-  btn.addEventListener("click", () => {
-    modal.classList.add("show");
-    burstHearts();
+const welcomeScreen = document.getElementById("welcomeScreen");
+const mainContent = document.getElementById("mainContent");
+const startBtn = document.getElementById("startBtn");
+
+startBtn.addEventListener("click", () => {
+
+  welcomeScreen.style.opacity = "0";
+
+  setTimeout(() => {
+
+    welcomeScreen.style.display = "none";
+    mainContent.classList.remove("hidden");
+
+    createHearts();
+
+  }, 600);
+
+});
+
+
+/* -------------------------
+   FLOATING HEARTS
+------------------------- */
+
+function createHeart() {
+
+  const heart = document.createElement("div");
+
+  heart.className = "heart";
+
+  const hearts = ["❤️", "💕", "💗", "💖", "💓", "💘"];
+
+  heart.innerHTML =
+    hearts[Math.floor(Math.random() * hearts.length)];
+
+  heart.style.left =
+    Math.random() * 100 + "vw";
+
+  heart.style.fontSize =
+    (12 + Math.random() * 22) + "px";
+
+  heart.style.animationDuration =
+    (5 + Math.random() * 5) + "s";
+
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 10000);
+
+}
+
+
+function createHearts() {
+
+  setInterval(() => {
+
+    createHeart();
+
+  }, 700);
+
+}
+
+
+/* -------------------------
+   REASON CARD EFFECT
+------------------------- */
+
+const reasonCards =
+  document.querySelectorAll(".reason-card");
+
+reasonCards.forEach(card => {
+
+  card.addEventListener("click", () => {
+
+    card.style.transform = "scale(1.05)";
+
+    setTimeout(() => {
+
+      card.style.transform = "";
+
+    }, 250);
+
   });
+
 });
 
-closeModal.addEventListener("click", () => modal.classList.remove("show"));
-modal.addEventListener("click", e => {
-  if (e.target === modal) modal.classList.remove("show");
+
+/* -------------------------
+   OPEN WHEN LETTERS
+------------------------- */
+
+const letterModal =
+  document.getElementById("letterModal");
+
+const letterText =
+  document.getElementById("letterText");
+
+const letterCards =
+  document.querySelectorAll(".letter-card");
+
+const closeLetter =
+  document.getElementById("closeLetter");
+
+const closeLetterBtn =
+  document.getElementById("closeLetterBtn");
+
+
+letterCards.forEach(card => {
+
+  card.addEventListener("click", () => {
+
+    const message =
+      card.getAttribute("data-message");
+
+    letterText.textContent = message;
+
+    letterModal.classList.add("show");
+
+  });
+
 });
 
-function burstHearts() {
-  for (let i = 0; i < 18; i++) {
-    const h = document.createElement("div");
-    h.className = "floating-heart";
-    h.textContent = ["♥","♡","💗","💕"][Math.floor(Math.random()*4)];
-    h.style.left = (35 + Math.random()*30) + "%";
-    h.style.fontSize = (16 + Math.random()*24) + "px";
-    h.style.animationDuration = (2 + Math.random()*2) + "s";
-    document.querySelector(".hearts").appendChild(h);
-    setTimeout(() => h.remove(), 4500);
+
+function closeLetterModal() {
+
+  letterModal.classList.remove("show");
+
+}
+
+
+closeLetter.addEventListener(
+  "click",
+  closeLetterModal
+);
+
+closeLetterBtn.addEventListener(
+  "click",
+  closeLetterModal
+);
+
+
+/* -------------------------
+   SURPRISE
+------------------------- */
+
+const surpriseBtn =
+  document.getElementById("surpriseBtn");
+
+const surpriseMessage =
+  document.getElementById("surpriseMessage");
+
+
+surpriseBtn.addEventListener("click", () => {
+
+  surpriseMessage.classList.remove("hidden");
+
+  surpriseBtn.textContent =
+    "You found it! 🥹❤️";
+
+  for (let i = 0; i < 15; i++) {
+
+    setTimeout(() => {
+
+      createHeart();
+
+    }, i * 100);
+
   }
+
+});
+
+
+/* -------------------------
+   YES BUTTONS
+------------------------- */
+
+const loveModal =
+  document.getElementById("loveModal");
+
+const yesBtn =
+  document.getElementById("yesBtn");
+
+const yesBtn2 =
+  document.getElementById("yesBtn2");
+
+const closeLoveModal =
+  document.getElementById("closeLoveModal");
+
+
+function showLoveModal() {
+
+  loveModal.classList.add("show");
+
+  for (let i = 0; i < 25; i++) {
+
+    setTimeout(() => {
+
+      createHeart();
+
+    }, i * 80);
+
+  }
+
 }
 
-setInterval(() => {
-  const h = document.createElement("div");
-  h.className = "floating-heart";
-  h.textContent = Math.random() > .5 ? "♥" : "♡";
-  h.style.left = Math.random()*100 + "%";
-  h.style.fontSize = (12 + Math.random()*20) + "px";
-  h.style.animationDuration = (5 + Math.random()*5) + "s";
-  document.querySelector(".hearts").appendChild(h);
-  setTimeout(() => h.remove(), 11000);
-}, 900);
 
-// A tiny built-in melody so the music button works without needing an external audio file.
-let audioCtx = null;
-let playing = false;
-let timer = null;
-const musicBtn = document.getElementById("musicBtn");
-const notes = [261.63,329.63,392.00,523.25,392.00,329.63];
+yesBtn.addEventListener(
+  "click",
+  showLoveModal
+);
 
-function playNote(freq, when, duration=.32) {
-  const osc = audioCtx.createOscillator();
-  const gain = audioCtx.createGain();
-  osc.type = "sine";
-  osc.frequency.value = freq;
-  gain.gain.setValueAtTime(0.0001, when);
-  gain.gain.exponentialRampToValueAtTime(0.08, when+0.03);
-  gain.gain.exponentialRampToValueAtTime(0.0001, when+duration);
-  osc.connect(gain).connect(audioCtx.destination);
-  osc.start(when);
-  osc.stop(when+duration+.02);
-}
+yesBtn2.addEventListener(
+  "click",
+  showLoveModal
+);
 
-function melody() {
-  if (!playing) return;
-  const now = audioCtx.currentTime;
-  notes.forEach((n,i)=>playNote(n, now+i*.42));
-  timer = setTimeout(melody, 2500);
-}
+
+closeLoveModal.addEventListener("click", () => {
+
+  loveModal.classList.remove("show");
+
+});
+
+
+/* -------------------------
+   CLOSE MODAL OUTSIDE
+------------------------- */
+
+window.addEventListener("click", (event) => {
+
+  if (event.target === letterModal) {
+
+    letterModal.classList.remove("show");
+
+  }
+
+  if (event.target === loveModal) {
+
+    loveModal.classList.remove("show");
+
+  }
+
+});
+
+
+/* -------------------------
+   MUSIC
+------------------------- */
+
+const music =
+  document.getElementById("music");
+
+const musicBtn =
+  document.getElementById("musicBtn");
+
+let musicPlaying = false;
+
 
 musicBtn.addEventListener("click", async () => {
-  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  if (audioCtx.state === "suspended") await audioCtx.resume();
-  playing = !playing;
-  if (playing) {
-    musicBtn.textContent = "♫ Our song is playing 💗";
-    melody();
-  } else {
-    musicBtn.textContent = "♫ Play our song 💗";
-    clearTimeout(timer);
+
+  try {
+
+    if (!musicPlaying) {
+
+      await music.play();
+
+      musicPlaying = true;
+
+      musicBtn.textContent = "🔊";
+
+    } else {
+
+      music.pause();
+
+      musicPlaying = false;
+
+      musicBtn.textContent = "🎵";
+
+    }
+
+  } catch (error) {
+
+    alert(
+      "Bubu, pehle song.mp3 file website me upload karo ❤️"
+    );
+
   }
+
 });
