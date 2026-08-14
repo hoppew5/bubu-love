@@ -3,89 +3,370 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#09000a">
-  <title>Hey bubu 💗</title>
+  <meta name="theme-color" content="#ff4f81">
+
+  <title>Hey Bubu ❤️</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Pacifico&display=swap"
+    rel="stylesheet"
+  >
+
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <div class="stars"></div>
+
+  <!-- Floating hearts -->
   <div class="hearts" aria-hidden="true"></div>
 
-  <button class="music" id="musicBtn" type="button">♫ Play our song 💗</button>
+  <!-- Opening Screen -->
+  <div id="welcomeScreen" class="welcome-screen">
 
-  <main>
+    <div class="welcome-content">
+
+      <div class="big-heart">❤️</div>
+
+      <p class="small-text">I made something special...</p>
+
+      <h1>For You, Bubu 💕</h1>
+
+      <p class="welcome-message">
+        A little corner of the internet<br>
+        made only for you.
+      </p>
+
+      <button id="startBtn" class="main-btn">
+        Start Our Story 💗
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- Main Website -->
+  <main id="mainContent" class="hidden">
+
+    <!-- Hero -->
     <section class="hero">
-      <div class="photo photo-left">
-        <img src="photo1.jpg" alt="A beautiful memory">
+
+      <div class="photo-card photo-left">
+        <img
+          src="photo1.jpg"
+          alt="Our beautiful memory"
+        >
       </div>
 
       <div class="hero-center">
+
         <div class="sparkle">♡</div>
-        <h1>Hey <span>bubu</span></h1>
-        <div class="heart-line">♡ ───── ♡ ───── ♡</div>
-        <p class="subtitle">You just opened something<br>really special... <strong>just for you 💗</strong></p>
+
+        <p class="hello">Hey</p>
+
+        <h1>
+          <span>Bubu</span> ❤️
+        </h1>
+
+        <div class="heart-line">
+          ♡ ───── ♡ ───── ♡
+        </div>
+
+        <p class="subtitle">
+          You just opened something<br>
+          really special... <strong>just for you 💗</strong>
+        </p>
 
         <div class="little-note">
-          <span>♥</span>
-          I made this little corner of<br>the internet to tell you...
-          <span>♥</span>
+          <span>💗</span>
+          I made this little corner of the internet
+          to tell you how special you are.
+          <span>💗</span>
         </div>
+
       </div>
 
-      <div class="photo photo-right">
-        <img src="photo1.jpg" alt="Another beautiful memory">
+      <div class="photo-card photo-right">
+        <img
+          src="WA_1785371614016.jpeg"
+          alt="Another beautiful memory"
+        >
       </div>
+
     </section>
 
+
+    <!-- Love Message -->
     <section class="message-card">
-      <div class="corner-heart">♥</div>
+
+      <div class="corner-heart">❤️</div>
+
+      <h2>A Little Message For You 💌</h2>
+
       <p>
-        From the moment you came into my life,<br>
-        everything felt a little more beautiful.<br>
-        You make my ordinary days feel magical.<br>
-        Your smile, your eyes, your silly talks,<br>
+        From the moment you came into my life,
+        everything felt a little more beautiful. ❤️
+        <br><br>
+
+        You make my ordinary days feel magical.
+        <br>
+
+        Your smile, your eyes, your silly talks,
         everything about you is my favourite. 💕
+
       </p>
-      <p class="thank-you">Thank you for being you, bubu. 🥺❤️</p>
+
+      <p class="thank-you">
+        Thank you for being you, Bubu. 🥺❤️
+      </p>
+
     </section>
 
+
+    <!-- Reasons -->
     <section class="reasons">
-      <h2>♡ Why You Mean the World to Me ♡</h2>
+
+      <h2>♡ Why You Mean The World To Me ♡</h2>
+
+      <p class="section-subtitle">
+        Tap the cards to reveal a little reason ❤️
+      </p>
+
       <div class="reason-grid">
-        <article><div>💗</div><p>You understand me<br>like no one else.</p></article>
-        <article><div>⭐</div><p>You make me laugh<br>when I'm down.</p></article>
-        <article><div>💗</div><p>You are my peace<br>in this noisy world.</p></article>
-        <article><div>💌</div><p>You care for me<br>so deeply.</p></article>
-        <article><div>💗</div><p>You are not just<br>my girl, you are<br><strong>my person.</strong></p></article>
+
+        <article class="reason-card">
+          <div class="reason-icon">💗</div>
+          <p>You understand me like no one else.</p>
+        </article>
+
+        <article class="reason-card">
+          <div class="reason-icon">⭐</div>
+          <p>You make me laugh when I'm down.</p>
+        </article>
+
+        <article class="reason-card">
+          <div class="reason-icon">🌸</div>
+          <p>You make even normal days special.</p>
+        </article>
+
+        <article class="reason-card">
+          <div class="reason-icon">💌</div>
+          <p>You care about me so deeply.</p>
+        </article>
+
+        <article class="reason-card">
+          <div class="reason-icon">🥹</div>
+          <p>You are my peace in this noisy world.</p>
+        </article>
+
+        <article class="reason-card">
+          <div class="reason-icon">❤️</div>
+          <p>You are not just my girl, you are my person.</p>
+        </article>
+
       </div>
+
     </section>
 
-    <section class="question">
-      <div class="balloons left">🎈🎈🎈</div>
-      <div class="balloons right">🎈🎈🎈</div>
-      <p class="so-bubu">So bubu...</p>
-      <h2>Will you be mine?</h2>
-      <div class="buttons">
-        <button class="yes" type="button">💗 Yes<br><small>(I'll always choose you)</small></button>
-        <span>or</span>
-        <button class="yes pale" type="button">💗 Yes<br><small>(A thousand times yes)</small></button>
+
+    <!-- Open When -->
+    <section class="open-when">
+
+      <h2>💌 Open When...</h2>
+
+      <p class="section-subtitle">
+        Choose one whenever you need me.
+      </p>
+
+      <div class="letter-grid">
+
+        <button class="letter-card" data-message="Even when I'm not beside you, remember that you're always in my heart. Close your eyes and imagine a big hug from me. 🤗❤️">
+          <span>🥺</span>
+          <strong>You miss me</strong>
+        </button>
+
+        <button class="letter-card" data-message="Hey Bubu, whatever happened today, please remember that you are stronger than you think. And I'm always cheering for you. ❤️">
+          <span>😔</span>
+          <strong>You're sad</strong>
+        </button>
+
+        <button class="letter-card" data-message="If you need a hug, consider this your unlimited virtual hug. 🤗❤️ Now smile for me, okay?"
+        >
+          <span>🤗</span>
+          <strong>You need a hug</strong>
+        </button>
+
+        <button class="letter-card" data-message="Good night, Bubu. Sleep peacefully and dream beautiful things. Tomorrow is another day for us to make memories. 🌙❤️">
+          <span>🌙</span>
+          <strong>Before you sleep</strong>
+        </button>
+
       </div>
-      <p class="footer">Made with all my love for you, bubu 💗</p>
+
     </section>
+
+
+    <!-- Memories -->
+    <section class="memories">
+
+      <h2>📸 Little Memories</h2>
+
+      <p class="section-subtitle">
+        Some moments are worth keeping forever.
+      </p>
+
+      <div class="memory-grid">
+
+        <div class="memory">
+          <img src="photo1.jpg" alt="Beautiful memory">
+          <p>One of my favourite memories ❤️</p>
+        </div>
+
+        <div class="memory">
+          <img src="WA_1785371614016.jpeg" alt="Beautiful memory">
+          <p>A moment I'll always remember 🥹</p>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- Surprise -->
+    <section class="surprise">
+
+      <div class="gift">🎁</div>
+
+      <h2>Don't Click This 😏</h2>
+
+      <p>
+        Seriously... you shouldn't.
+      </p>
+
+      <button id="surpriseBtn" class="main-btn">
+        Open My Surprise 💝
+      </button>
+
+      <div id="surpriseMessage" class="surprise-message hidden">
+        <h3>Got you! 😭❤️</h3>
+
+        <p>
+          If I could give you one thing in life,
+          I'd give you the ability to see yourself
+          through my eyes.
+        </p>
+
+        <strong>
+          Then you'd finally understand how special
+          you really are to me. ❤️
+        </strong>
+      </div>
+
+    </section>
+
+
+    <!-- Final Question -->
+    <section class="question">
+
+      <div class="balloons">
+        🎈 🎈 🎈
+      </div>
+
+      <p class="so-bubu">
+        So Bubu...
+      </p>
+
+      <h2>
+        Will you keep choosing me?
+      </h2>
+
+      <p class="forever">
+        Today, tomorrow and every day after that? ❤️
+      </p>
+
+      <div class="buttons">
+
+        <button class="yes" id="yesBtn">
+          ❤️ Yes
+          <small>(I'll always choose you)</small>
+        </button>
+
+        <button class="yes pale" id="yesBtn2">
+          💕 A thousand times YES
+          <small>(Obviously!)</small>
+        </button>
+
+      </div>
+
+      <p class="footer">
+        Made with all my love for you, Bubu 💗
+      </p>
+
+    </section>
+
   </main>
 
-  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Love message">
+
+  <!-- Letter Modal -->
+  <div id="letterModal" class="modal">
+
     <div class="modal-box">
-      <div class="big-heart">💗</div>
-      <h3>I knew it! 🥺</h3>
-      <p>Then it's settled... you and me, always. ♡</p>
-      <button id="closeModal">Okay bubu 💕</button>
+
+      <button class="close" id="closeLetter">×</button>
+
+      <div class="modal-heart">💌</div>
+
+      <p id="letterText"></p>
+
+      <button class="main-btn" id="closeLetterBtn">
+        I Love You Too ❤️
+      </button>
+
     </div>
+
   </div>
 
+
+  <!-- Final Modal -->
+  <div id="loveModal" class="modal">
+
+    <div class="modal-box final-box">
+
+      <div class="big-modal-heart">❤️</div>
+
+      <h2>I KNEW IT! 🥹</h2>
+
+      <p>
+        Then it's settled...
+      </p>
+
+      <p class="forever-text">
+        You & Me. Always. ❤️
+      </p>
+
+      <button class="main-btn" id="closeLoveModal">
+        Okay Bubu 💕
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- Music -->
+  <audio id="music" loop>
+    <source src="song.mp3" type="audio/mpeg">
+  </audio>
+
+  <button id="musicBtn" class="music-btn">
+    🎵
+  </button>
+
+
   <script src="script.js"></script>
+
 </body>
 </html>
